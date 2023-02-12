@@ -2,7 +2,7 @@
 """defining Basemodel."""
 
 from models import storage
-from uuid import uuid4
+import uuid
 from datetime import datetime, time, date
 
 
