@@ -1,4 +1,4 @@
-#!/user/bin/python3
+#!/usr/bin/python3
 """class place."""
 
 from models.base_model import BaseModel
