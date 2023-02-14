@@ -27,8 +27,8 @@ class TestBaseModel(unittest.TestCase):
         """tests what the instance type is"""
         self.assertIsInstance(self.bm1, BaseModel)
         self.assertIsInstance(str(self.bm1), str)
-        self.assertEqual(str(self.bm2), 
-                        "[BaseModel] ({}) {}".format(b.id, b.__dict__))
+        self.assertEqual(str(
+                    self.bm2), "[BaseModel] ({}) {}".format(b.id, b.__dict__))
 
     def test_to_dict(self):
         """tests the dictionary representation of an instance"""
