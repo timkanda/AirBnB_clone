@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """unittest for base_model"""
 
+import uuid
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
