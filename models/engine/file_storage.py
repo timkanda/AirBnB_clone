@@ -50,7 +50,7 @@ class FileStorage:
             "Place": Place,
             "Review": Review
             }
-        obj = {}
+        obj = FileStorage.__objects
         try:
             with open(FileStorage.__file_path, "r") as f:
                 json_data = json.load(f)
