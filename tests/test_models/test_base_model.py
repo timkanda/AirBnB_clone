@@ -1,47 +1,40 @@
 #!/usr/bin/python3
-"""module handles all test cases related to the class
-BaseModel
-"""
+"""unittest for base_model"""
+
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
-    """This class defines tests cases for the BaseModel
-    class
-    """
+    def test_instance_creation(self):
+        bm = BaseModel()
+        self.assertIsInstance(bm, BaseModel)
+        self.assertIsInstance(bm.id, str)
+        self.assertIsInstance(bm.created_at, datetime)
+        self.assertIsInstance(bm.updated_at, datetime)
 
-    def setUp(self):
-        """Set Up instances"""
-        self.bm1 = BaseModel()
-        self.bm2 = BaseModel()
+    def test_id_generation(self):
+        bm1 = BaseModel()
+        bm2 = BaseModel()
+        self.assertNotEqual(bm1.id, bm2.id)
 
-    def test_uuid(self):
-        """UUID tests"""
-        self.assertTrue(hasattr(self.bm1, "id"))
-        self.assertIsInstance(self.bm1.id, str)
-        self.assertNotEqual(self.bm1.id, self.bm2.id)
+    def test_save_method(self):
+        bm = BaseModel()
+        created_at = bm.created_at
+        updated_at = bm.updated_at
+        bm.save()
+        self.assertGreater(bm.updated_at, updated_at)
+        self.assertEqual(bm.created_at, created_at)
 
-    def test_instance_type(self):
-        """tests what the instance type is"""
-        self.assertIsInstance(self.bm1, BaseModel)
-        self.assertIsInstance(str(self.bm1), str)
-        self.assertEqual(str(
-                    self.bm2), "[BaseModel] ({}) {}".format(b.id, b.__dict__))
-
-    def test_to_dict(self):
-        """tests the dictionary representation of an instance"""
-        self.assertIsInstance(self.bm2.to_dict(), dict)
-
-    def test_type_created_at(self):
-        """tests if type of created time attribute is datetime"""
-        self.assertIs(self.bm1.created_at, datetime)
-
-    def test_type_updated_at(self):
-        """tests if type of created time attribute is datetime"""
-        self.assertIs(self.bm1.updated_at, datetime)
+    def test_to_dict_method(self):
+        bm = BaseModel()
+        my_dict = bm.to_dict()
+        self.assertIsInstance(my_dict, dict)
+        self.assertEqual(my_dict['__class__'], 'BaseModel')
+        self.assertIsInstance(my_dict['created_at'], str)
+        self.assertIsInstance(my_dict['updated_at'], str)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
