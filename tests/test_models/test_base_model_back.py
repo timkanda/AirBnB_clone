@@ -2,7 +2,6 @@
 """Test suite for BaseModel module
 """
 
-
 from models.base_model import BaseModel
 import unittest
 import uuid
@@ -16,26 +15,22 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """setup for the tests
         """
-
         self.bm = BaseModel()
 
     def tearDown(self):
         """teardown method
         """
-
         del self.bm
 
     def test_id(self):
         """testing id
         """
-
         self.assertTrue(uuid.UUID(self.bm.id))
         self.assertEqual(str, type(self.bm.id))
 
     def test_created_at(self):
         """testing created_at
         """
-
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.assertEqual(now, self.bm.created_at.strftime("%Y-%m-%d %H:%M:%S"))
         self.assertIsInstance(self.bm.created_at, datetime)
@@ -43,7 +38,6 @@ class TestBaseModel(unittest.TestCase):
     def test_updated_at(self):
         """testing updated_at
         """
-
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.assertEqual(now, self.bm.updated_at.strftime("%Y-%m-%d %H:%M:%S"))
         self.assertIsInstance(self.bm.updated_at, datetime)
@@ -97,7 +91,6 @@ class TestBaseModel(unittest.TestCase):
         """testing the validity of to_dict after calling save
         method
         """
-
         self.bm.save()
         my_dict = self.bm.to_dict()
         self.assertEqual(my_dict["updated_at"], self.bm.updated_at.isoformat())
